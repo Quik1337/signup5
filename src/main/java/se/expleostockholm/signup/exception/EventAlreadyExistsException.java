@@ -6,9 +6,9 @@ import graphql.language.SourceLocation;
 
 import java.util.List;
 
-public class EventAlreadyExistException extends RuntimeException implements GraphQLError {
+public class EventAlreadyExistsException extends RuntimeException implements GraphQLError {
 
-    public EventAlreadyExistException(String message) {
+    public EventAlreadyExistsException(String message) {
         super(message);
     }
 

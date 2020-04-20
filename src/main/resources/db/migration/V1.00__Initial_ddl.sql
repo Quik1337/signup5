@@ -1,25 +1,35 @@
-CREATE TYPE attendance AS ENUM ('ATTENDING', 'NOT_ATTENDING', 'MAYBE', 'NO_RESPONSE');
+CREATE TYPE attendance_ AS ENUM ('ATTENDING', 'NOT_ATTENDING', 'MAYBE', 'NO_RESPONSE');
 
-CREATE TABLE person
+CREATE TABLE user_
 (
     id         SERIAL PRIMARY KEY,
-    email      VARCHAR(255),
+    email      VARCHAR(255) NOT NULL UNIQUE,
     first_name VARCHAR(255),
     last_name  VARCHAR(255)
 );
-CREATE TABLE event
+
+CREATE TABLE account_
+(
+    id       SERIAL PRIMARY KEY,
+    user_id  INT NOT NULL UNIQUE REFERENCES user_ (id),
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE event_
 (
     id            SERIAL PRIMARY KEY,
-    host_id       INT NOT NULL REFERENCES person (id),
-    title         VARCHAR(255),
+    host_id       INT NOT NULL REFERENCES account_ (id),
+    title         VARCHAR(255) NOT NULL,
     description   VARCHAR(255),
-    date_of_event DATE,
-    location      VARCHAR(255)
+    date_of_event DATE NOT NULL,
+    time_of_event TIME NOT NULL,
+    location      VARCHAR(255) NOT NULL
 );
-CREATE TABLE invitation
+
+CREATE TABLE invitation_
 (
     id         SERIAL PRIMARY KEY,
-    guest_id   INT        NOT NULL REFERENCES person (id),
-    event_id   INT        NOT NULL REFERENCES event (id),
-    attendance attendance NOT NULL DEFAULT 'NO_RESPONSE'
+    guest_id   INT         NOT NULL REFERENCES user_ (id),
+    event_id   INT         NOT NULL REFERENCES event_ (id),
+    attendance attendance_ DEFAULT 'NO_RESPONSE'
 );

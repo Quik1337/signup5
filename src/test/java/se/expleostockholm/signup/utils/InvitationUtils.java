@@ -2,7 +2,7 @@ package se.expleostockholm.signup.utils;
 
 import se.expleostockholm.signup.domain.Event;
 import se.expleostockholm.signup.domain.Invitation;
-import se.expleostockholm.signup.domain.Person;
+import se.expleostockholm.signup.domain.User;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -10,18 +10,18 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static se.expleostockholm.signup.utils.PersonUtils.assertPersonsAreEqual;
+import static se.expleostockholm.signup.utils.UserUtils.assertUsersAreEqual;
 
 public class InvitationUtils {
 
-    public static Invitation createMockInvitation(Event expectedEvent, Person guest) {
+    public static Invitation createMockInvitation(Event expectedEvent, User guest) {
         return Invitation.builder()
                 .event_id(expectedEvent.getId())
                 .guest(guest)
                 .build();
     }
 
-    public static Invitation createMockInvitation(Person guest) {
+    public static Invitation createMockInvitation(User guest) {
         return Invitation.builder()
                 .guest(guest)
                 .build();
@@ -30,7 +30,7 @@ public class InvitationUtils {
     public static void assertInvitationsAreEqual(Invitation expectedInvitation, Invitation actualInvitation) {
         assertAll(
                 () -> assertEquals(expectedInvitation.getAttendance(), actualInvitation.getAttendance(), "Attendance did not match!"),
-                () -> assertPersonsAreEqual(expectedInvitation.getGuest(), actualInvitation.getGuest(), "Guest")
+                () -> assertUsersAreEqual(expectedInvitation.getGuest(), actualInvitation.getGuest(), "Guest")
         );
     }
 

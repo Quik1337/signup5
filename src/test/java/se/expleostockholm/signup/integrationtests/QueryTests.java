@@ -38,15 +38,15 @@ public class QueryTests extends SignupDbTests {
     }
 
     @Test
-    public void getAllPersons() throws IOException {
-        GraphQLResponse response = graphQLTestTemplate.perform("queries/getAllPersons.graphql", null);
+    public void getAllUsers() throws IOException {
+        GraphQLResponse response = graphQLTestTemplate.perform("queries/getAllUsers.graphql", null);
 
         assertAll(
                 () -> assertTrue(response.isOk(), "Response not OK!"),
-                () -> assertEquals("1", response.get("$.data.getAllPersons[0].id"), "Person id did not match!"),
-                () -> assertEquals("amatys0@wp.com", response.get("$.data.getAllPersons[0].email"), "Email did not match!"),
-                () -> assertEquals("Ali", response.get("$.data.getAllPersons[0].first_name"), "First name did not match!"),
-                () -> assertEquals("Matys", response.get("$.data.getAllPersons[0].last_name"), "Last name did not match!")
+                () -> assertEquals("1", response.get("$.data.getAllUsers[0].id"), "User id did not match!"),
+                () -> assertEquals("amatys0@wp.com", response.get("$.data.getAllUsers[0].email"), "Email did not match!"),
+                () -> assertEquals("Ali", response.get("$.data.getAllUsers[0].first_name"), "First name did not match!"),
+                () -> assertEquals("Matys", response.get("$.data.getAllUsers[0].last_name"), "Last name did not match!")
         );
     }
 

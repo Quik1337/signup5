@@ -9,10 +9,10 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import se.expleostockholm.signup.domain.Attendance;
 import se.expleostockholm.signup.domain.Event;
 import se.expleostockholm.signup.domain.Invitation;
-import se.expleostockholm.signup.domain.Person;
+import se.expleostockholm.signup.domain.User;
 import se.expleostockholm.signup.repository.EventMapper;
 import se.expleostockholm.signup.repository.InvitationMapper;
-import se.expleostockholm.signup.repository.PersonMapper;
+import se.expleostockholm.signup.repository.UserMapper;
 import se.expleostockholm.signup.utils.InvitationUtils;
 
 import javax.annotation.Resource;
@@ -37,7 +37,7 @@ public class EventMapperTest extends SignupDbTests {
     private EventMapper eventMapper;
 
     @Resource
-    private PersonMapper personMapper;
+    private UserMapper userMapper;
 
     @Resource
     private InvitationMapper invitationMapper;
@@ -54,7 +54,7 @@ public class EventMapperTest extends SignupDbTests {
     @Order(1)
     public void event_exists_success() {
         Optional<Event> actualEvent = eventMapper.getEventById(1L);
-        Person expectedGuest = Person.builder()
+        User expectedGuest = User.builder()
                 .id(8L)
                 .email("hroch7@tamu.edu")
                 .first_name("Hakim")
@@ -68,7 +68,7 @@ public class EventMapperTest extends SignupDbTests {
                 .attendance(Attendance.NO_RESPONSE)
                 .build();
 
-        Person expectedHost = Person.builder()
+        User expectedHost = User.builder()
                 .id(18L)
                 .email("fbartolomeoh@illinois.edu")
                 .first_name("Fenelia")
@@ -99,8 +99,8 @@ public class EventMapperTest extends SignupDbTests {
     @Test
     @Order(3)
     public void event_saved_success() {
-        Person expectedHost = personMapper.getPersonById(50L).get();
-        Person expectedGuest = personMapper.getPersonById(10L).get();
+        User expectedHost = userMapper.getUserById(50L).get();
+        User expectedGuest = userMapper.getUserById(10L).get();
 
         expectedEvent = createMockEvent(expectedHost);
         eventMapper.saveEvent(expectedEvent);

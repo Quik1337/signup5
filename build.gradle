@@ -2,6 +2,8 @@ plugins {
     id 'org.springframework.boot' version '2.2.4.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
+    id 'org.flywaydb.flyway' version '6.3.2'
+
 }
 
 group = 'se.expleostockholm'
@@ -63,4 +65,10 @@ test {
         events "passed", "skipped", "failed", "standardOut", "standardError"
         exceptionFormat "full"
     }
+}
+
+flyway {
+    url = 'jdbc:postgresql://localhost:5432/signup'
+    user = 'postgres'
+    password = 'password'
 }

@@ -9,7 +9,7 @@ import lombok.*;
 @ToString
 public class Invitation {
     private Long id;
-    private Person guest;
+    private User guest;
     private Long event_id;
     @Builder.Default
     private Attendance attendance = Attendance.NO_RESPONSE;

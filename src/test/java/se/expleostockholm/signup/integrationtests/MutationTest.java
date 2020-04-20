@@ -8,10 +8,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import se.expleostockholm.signup.domain.*;
-import se.expleostockholm.signup.exception.EventAlreadyExistException;
+import se.expleostockholm.signup.exception.EventAlreadyExistsException;
 import se.expleostockholm.signup.repository.EventMapper;
 import se.expleostockholm.signup.repository.InvitationMapper;
-import se.expleostockholm.signup.repository.PersonMapper;
+import se.expleostockholm.signup.repository.UserMapper;
 import se.expleostockholm.signup.resolver.Mutation;
 
 import javax.annotation.Resource;
@@ -37,13 +37,13 @@ public class MutationTest extends SignupDbTests {
     private EventMapper eventMapper;
 
     @Resource
-    private PersonMapper personMapper;
+    private UserMapper userMapper;
 
     private final Long invitationId = 1L;
     private final Long hostId = 3L;
 
     private Event expectedEvent;
-    private Person expectedHost;
+    private User expectedHost;
 
     public void tearDown() {
         eventMapper.removeEventById(expectedEvent.getId());
@@ -65,7 +65,7 @@ public class MutationTest extends SignupDbTests {
     @Order(2)
     public void createEvent_success() {
         System.out.println(hostId);
-        expectedHost = personMapper.getPersonById(hostId).get();
+        expectedHost = userMapper.getUserById(hostId).get();
         expectedEvent = createMockEvent(expectedHost);
 
         Response response = mutation.createEvent(expectedEvent);
@@ -78,7 +78,7 @@ public class MutationTest extends SignupDbTests {
     @Test
     @Order(3)
     public void createEvent_duplicate_fail() {
-        assertThrows(EventAlreadyExistException.class, () ->
+        assertThrows(EventAlreadyExistsException.class, () ->
                 mutation.createEvent(eventMapper.getEventById(1L).get())
         );
     }

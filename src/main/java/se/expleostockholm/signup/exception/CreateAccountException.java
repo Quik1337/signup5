@@ -6,9 +6,9 @@ import graphql.language.SourceLocation;
 
 import java.util.List;
 
-public class PersonNotFoundException extends RuntimeException implements GraphQLError {
+public class CreateAccountException extends RuntimeException implements GraphQLError {
 
-     public PersonNotFoundException(String message) {
+    public CreateAccountException(String message) {
         super(message);
     }
 
@@ -21,5 +21,4 @@ public class PersonNotFoundException extends RuntimeException implements GraphQL
     public ErrorClassification getErrorType() {
         return null;
     }
-
 }

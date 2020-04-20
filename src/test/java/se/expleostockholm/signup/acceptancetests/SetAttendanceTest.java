@@ -46,20 +46,20 @@ public class SetAttendanceTest extends SignupDbTests {
     @MethodSource("providedData")
     public void setAttendance_test(Long invitationId, Attendance attendance, String expectedMessage) throws IOException {
         queryVariables = setQueryVariables(invitationId, attendance);
-        String responseMessage = when_person_responds_with_attendance(queryVariables);
+        String responseMessage = when_user_responds_with_attendance(queryVariables);
 
-        then_person_gets_response_message(responseMessage, expectedMessage);
+        then_user_gets_response_message(responseMessage, expectedMessage);
         and_invitation_status_is_updated_to_attendance(attendance);
 
     }
 
-    public String when_person_responds_with_attendance(ObjectNode variables) throws IOException {
+    public String when_user_responds_with_attendance(ObjectNode variables) throws IOException {
         return graphQLTestTemplate
                 .perform("mutations/setAttendance.graphql", variables)
                 .get("$.data.response.message");
     }
 
-    public void then_person_gets_response_message(String responseMessage, String expectedMessage) {
+    public void then_user_gets_response_message(String responseMessage, String expectedMessage) {
         assertEquals(expectedMessage, responseMessage);
     }
 

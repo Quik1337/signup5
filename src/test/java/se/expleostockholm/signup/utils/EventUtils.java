@@ -2,7 +2,7 @@ package se.expleostockholm.signup.utils;
 
 import com.github.javafaker.Faker;
 import se.expleostockholm.signup.domain.Event;
-import se.expleostockholm.signup.domain.Person;
+import se.expleostockholm.signup.domain.User;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -10,11 +10,11 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static se.expleostockholm.signup.utils.InvitationUtils.assertInvitationListsAreEqual;
-import static se.expleostockholm.signup.utils.PersonUtils.assertPersonsAreEqual;
+import static se.expleostockholm.signup.utils.UserUtils.assertUsersAreEqual;
 
 public class EventUtils {
 
-    public static Event createMockEvent(Person host) {
+    public static Event createMockEvent(User host) {
         Faker faker = new Faker();
 
         return Event.builder()
@@ -36,7 +36,7 @@ public class EventUtils {
                 () -> assertEquals(expectedEvent.getLocation(), actualEvent.get().getLocation(), "Event location did not match!"),
                 () -> assertEquals(expectedEvent.getTitle(), actualEvent.get().getTitle(), "Event title did not match!"),
                 () -> assertInvitationListsAreEqual(expectedEvent.getInvitations(), actualEvent.get().getInvitations()),
-                () -> assertPersonsAreEqual(expectedEvent.getHost(), actualEvent.get().getHost(), "Host")
+                () -> assertUsersAreEqual(expectedEvent.getHost(), actualEvent.get().getHost(), "Host")
         );
     }
 }

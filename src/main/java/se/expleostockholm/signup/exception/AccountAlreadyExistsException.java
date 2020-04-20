@@ -6,8 +6,9 @@ import graphql.language.SourceLocation;
 
 import java.util.List;
 
-public class SavePersonException extends RuntimeException implements GraphQLError {
-    public SavePersonException(String message) {
+public class AccountAlreadyExistsException extends RuntimeException implements GraphQLError {
+
+    public AccountAlreadyExistsException(String message) {
         super(message);
     }
 

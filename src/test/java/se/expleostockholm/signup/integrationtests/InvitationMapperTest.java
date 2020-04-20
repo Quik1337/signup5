@@ -9,10 +9,10 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import se.expleostockholm.signup.domain.Attendance;
 import se.expleostockholm.signup.domain.Event;
 import se.expleostockholm.signup.domain.Invitation;
-import se.expleostockholm.signup.domain.Person;
+import se.expleostockholm.signup.domain.User;
 import se.expleostockholm.signup.repository.EventMapper;
 import se.expleostockholm.signup.repository.InvitationMapper;
-import se.expleostockholm.signup.repository.PersonMapper;
+import se.expleostockholm.signup.repository.UserMapper;
 import se.expleostockholm.signup.utils.InvitationUtils;
 
 import javax.annotation.Resource;
@@ -33,7 +33,7 @@ public class InvitationMapperTest extends SignupDbTests {
     private InvitationMapper invitationMapper;
 
     @Resource
-    private PersonMapper personMapper;
+    private UserMapper userMapper;
 
     @Resource
     private EventMapper eventMapper;
@@ -75,7 +75,7 @@ public class InvitationMapperTest extends SignupDbTests {
     @Test
     @Order(3)
     void invitation_saved_success() {
-        Person guest = personMapper.getPersonById(guestId).get();
+        User guest = userMapper.getUserById(guestId).get();
 
         Event event = eventMapper.getEventById(eventId).get();
         expectedInvitation = InvitationUtils.createMockInvitation(event, guest);

@@ -1,5 +1,5 @@
 query {
-    getAllPersons {
+    getAllUsers {
         id
         email
         first_name

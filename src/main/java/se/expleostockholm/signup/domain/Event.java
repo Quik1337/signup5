@@ -1,10 +1,6 @@
 package se.expleostockholm.signup.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Builder.Default;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -17,13 +13,12 @@ import java.util.List;
 @AllArgsConstructor
 public class Event {
     private Long id;
-    private Person host;
-    @Default
-    private List<Invitation> invitations = new ArrayList<>();
+    private Long host_id; //Gör om till host_id
     private String title;
     private String description;
     private LocalDate date_of_event;
     private LocalTime time_of_event;
     private String location;
-
+    @Builder.Default
+    private List<Invitation> invitations = new ArrayList<>();
 }

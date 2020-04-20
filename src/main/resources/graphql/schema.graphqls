@@ -1,23 +1,26 @@
-enum Attendance {
-    ATTENDING
-    NOT_ATTENDING
-    MAYBE
-    NO_RESPONSE
+type Attendance {
+    attendance: 
 }
 
 scalar LocalDate
 scalar LocalTime
 
-type Person {
+type User {
     id: ID!
     email: String!
     first_name: String
     last_name: String
 }
 
+type Account {
+    id: ID!
+    user: User!
+    password: String!
+}
+
 type Event {
     id: ID!
-    host: Person!
+    host_id: Int!
     title: String!
     description: String
     date_of_event: LocalDate!
@@ -28,19 +31,26 @@ type Event {
 
 type Invitation {
     id: ID!
-    guest: Person!
+    guest: User!
     event_id: Int!
     attendance: Attendance!
 }
 
 type Response {
-    id: Int
+    id: ID
     message: String
+}
+
+input UserInput {
+    id: Int
+    email: String
+    first_name: String
+    last_name: String
 }
 
 input EventInput {
     id: Int
-    host: HostInput!
+    host_id: Int!
     title: String!
     description: String
     date_of_event: LocalDate!
@@ -51,42 +61,32 @@ input EventInput {
 
 input InvitationInput {
     id: Int
-    guest: GuestInput!
+    guest: UserInput!
     event_id: Int
     attendance: Attendance
 }
 
-input HostInput {
-    id: Int!
-    email: String
-    first_name: String
-    last_name: String
-}
-
-input GuestInput {
-    id: Int
-    email: String!
-    first_name: String
-    last_name: String
-}
-
 type Query {
-    getAllPersons: [Person]
+    getAllUsers: [User]
+    getAllAccounts: [Account]
     getAllEvents: [Event]
     getAllInvitations: [Invitation]
-    getPersonById(id: Int): Person
-    getPersonByEmail(email: String!): Person
+    getUserById(id: Int): User
+    getUserByEmail(email: String!): User
     getEventById(id: Int): Event
     getEventsByHostId(id: Int!): [Event]
     getInvitationById(id: Int): Invitation
     getInvitationsByEventId(id: Int): [Invitation]
     getInvitationsByGuestId(id: Int!): [Invitation]
-
+    getAccountById(id: Int): Account
+    getAccountByUserEmail(userEmail: String): Account
 }
 
 type Mutation {
-    setAttendance(attendance: Attendance, invitation_id: Int): Response
-    createEvent(input: EventInput): Response
+    createUser(user: UserInput): Response
+    createAccount(user: UserInput, password: String): Response
+    createEvent(event: EventInput): Response
+    setAttendance(attendance: Attendance, invitationId: Int): Response
 }
 
 schema {

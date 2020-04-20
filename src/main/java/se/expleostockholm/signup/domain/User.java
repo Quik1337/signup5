@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Person {
+public class User {
+
     private Long id;
     private String email;
     private String first_name;
