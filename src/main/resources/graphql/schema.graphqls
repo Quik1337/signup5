@@ -60,7 +60,7 @@ input EventInput {
 }
 
 input InvitationInput {
-    id: Int
+    id: Int!
     guest: UserInput!
     event_id: Int
     attendance: Attendance
