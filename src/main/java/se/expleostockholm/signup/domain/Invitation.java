@@ -9,8 +9,9 @@ import lombok.*;
 @ToString
 public class Invitation {
     private Long id;
+    private Event event;
     private User guest;
-    private Long event_id;
+    private String comment;
     @Builder.Default
     private Attendance attendance = Attendance.NO_RESPONSE;
 }

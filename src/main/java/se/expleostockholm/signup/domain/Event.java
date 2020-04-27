@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Event {
     private Long id;
-    private Long host_id; //Gör om till host_id
+    private User host;
     private String title;
     private String description;
     private LocalDate date_of_event;

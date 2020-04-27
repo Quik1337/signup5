@@ -1,39 +1,8 @@
-type Attendance {
-    attendance: 
-}
-
-scalar LocalDate
-scalar LocalTime
-
-type User {
-    id: ID!
-    email: String!
-    first_name: String
-    last_name: String
-}
-
-type Account {
-    id: ID!
-    user: User!
-    password: String!
-}
-
-type Event {
-    id: ID!
-    host_id: Int!
-    title: String!
-    description: String
-    date_of_event: LocalDate!
-    time_of_event: LocalTime!
-    location: String!
-    invitations: [Invitation]
-}
-
-type Invitation {
-    id: ID!
-    guest: User!
-    event_id: Int!
-    attendance: Attendance!
+enum Attendance {
+    ATTENDING
+    NOT_ATTENDING
+    MAYBE
+    NO_RESPONSE
 }
 
 type Response {
@@ -41,52 +10,53 @@ type Response {
     message: String
 }
 
-input UserInput {
-    id: Int
+type User {
+    id: ID
     email: String
     first_name: String
     last_name: String
 }
 
-input EventInput {
-    id: Int
-    host_id: Int!
-    title: String!
+type Event {
+    id: ID
+    host: User
+    title: String
     description: String
-    date_of_event: LocalDate!
-    time_of_event: LocalTime!
-    location: String!
-    invitations: [InvitationInput]
+    date_of_event: String
+    time_of_event: String
+    location: String
+    invitations: [Invitation]
 }
 
-input InvitationInput {
-    id: Int!
-    guest: UserInput!
-    event_id: Int
+type Invitation {
+    id: ID
+    event: Event
+    guest: User
+    comment: String
     attendance: Attendance
 }
 
+input InvitationUpdateInput {
+    id: Int
+    attendance: Attendance
+    comment: String
+}
+
 type Query {
-    getAllUsers: [User]
-    getAllAccounts: [Account]
-    getAllEvents: [Event]
-    getAllInvitations: [Invitation]
+    getUsers: [User]
     getUserById(id: Int): User
-    getUserByEmail(email: String!): User
+
+    getEvents: [Event]
     getEventById(id: Int): Event
-    getEventsByHostId(id: Int!): [Event]
+    getEventsByHostId(host_id: Int): [Event]
+
     getInvitationById(id: Int): Invitation
-    getInvitationsByEventId(id: Int): [Invitation]
-    getInvitationsByGuestId(id: Int!): [Invitation]
-    getAccountById(id: Int): Account
-    getAccountByUserEmail(userEmail: String): Account
+    getInvitationsByEventId(event_id: Int): [Invitation]
+    getInvitationsByGuestId(guest_id: Int): [Invitation]
 }
 
 type Mutation {
-    createUser(user: UserInput): Response
-    createAccount(user: UserInput, password: String): Response
-    createEvent(event: EventInput): Response
-    setAttendance(attendance: Attendance, invitationId: Int): Response
+    updateInvitation(invitationUpdateInput: InvitationUpdateInput): Response
 }
 
 schema {
