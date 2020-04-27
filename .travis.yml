@@ -19,8 +19,7 @@ branches:
 deploy:
   skip_cleanup: true
   provider: heroku
-  api_key:
-    secure: 7778e54c-7afc-4ee8-b909-ffd64a98f0f7
+  api_key: 7778e54c-7afc-4ee8-b909-ffd64a98f0f7
   app: signup5-dev
   on:
     repo: Quik1337/signup5
