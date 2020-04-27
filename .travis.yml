@@ -15,11 +15,12 @@ before_install:
 branches:
   only:
   - master
+  - LIA_V1.0
 deploy:
   skip_cleanup: true
   provider: heroku
   api_key:
-    secure: ND9YZehMQqhAyxev21+BJ+Slu4BQdTXhhuG3qlHQjbTpq9f0DzbEihJISq1XTp+4xIwJkveGZp/v/W7TQnTVR95Aat5Lv6NSkcaAcLBTF4qxaRChKT0yge3yXdFl+6iBKdtJf1OnpZOTjo19TKjVwqRz62nN9cTLPg/TD9VMnSgGtAko6kx06S3Tr+cBt86thhon1YB1tXZtiLn32TUc7kJswR8sEJddmedmlIxtyqEx/wbYRWUosw4DS2HFda9/BmuVf4AFt5YzJkW4HGIb+BcvpX7RkeQXAKolFBNIc7J0pBNklDdkgHu+8DP4yYLTuBQ3Asgcc2RE54Ot4zE3z16Monsy0ZTjRu1/lgQVjbG7q4/q273digTkoYgbgMU1zI30FgrD60HdIuoQbxicMs0N0JIf+6ZDHKuMMuDuz0/e61GX+yqnbZIOJFJLss06KQeQYXg5/fq/nNMnFcUZbxqCiwsb+PW1JmzSw/35UXd3lhYnFZE6j8DZIxsQMVaYdw4OGgndnpTxFCseM9rii7XPc9JnHWN8MqYdV5bZaa10xCZ65paa/CkvOUawy+DNTdU2ge43fLW1tWt2tZr3SxczZ+m9m3DORPrW/TMRhSgty9c6lS/1tMFGUqu9WNmENqHVfcx1qbmfL+EsO2sX29hD6NqL/g75ib/FBvCL9YA=
+    secure: 7778e54c-7afc-4ee8-b909-ffd64a98f0f7
   app: signup5-dev
   on:
-    repo: Signup5/signup5
+    repo: Quik1337/signup5
