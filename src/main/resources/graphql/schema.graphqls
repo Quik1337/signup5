@@ -23,7 +23,8 @@ type Event {
     title: String
     description: String
     date_of_event: String
-    time_of_event: String
+    start_time_of_event: String
+    end_time_of_event: String
     location: String
     invitations: [Invitation]
 }
@@ -36,10 +37,41 @@ type Invitation {
     attendance: Attendance
 }
 
-input InvitationUpdateInput {
+input UserInput {
+    id: Int
+    email: String
+    first_name: String
+    last_name: String
+}
+
+input EventInput {
+    id: Int
+}
+
+input CreateInvitationInput {
+    event: EventInput
+    guest: UserInput
+}
+
+input UpdateInvitationInput {
     id: Int
     attendance: Attendance
     comment: String
+}
+
+input DeleteInvitationInput {
+    id: Int
+}
+
+input CreateEventInput {
+    host: UserInput
+    title: String
+    description: String
+    date_of_event: String
+    start_time_of_event: String
+    end_time_of_event: String
+    location: String
+    invitations: [CreateInvitationInput]
 }
 
 type Query {
@@ -56,7 +88,10 @@ type Query {
 }
 
 type Mutation {
-    updateInvitation(invitationUpdateInput: InvitationUpdateInput): Response
+    createInvitation(invitation: CreateInvitationInput): Response
+    updateInvitation(invitation: UpdateInvitationInput): Response
+    deleteInvitation(invitation: DeleteInvitationInput): Response
+    createEvent(event: CreateEventInput): Response
 }
 
 schema {

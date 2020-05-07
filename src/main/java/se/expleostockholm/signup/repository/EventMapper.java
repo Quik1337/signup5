@@ -40,4 +40,8 @@ public interface EventMapper {
                     many = @Many(select = "se.expleostockholm.signup.repository.InvitationMapper.getInvitationsByEventId"))
     })
     List<Event> getEventsByHostId(Long host_id);
+
+    @Insert("INSERT INTO event_ (host_id, title, description, date_of_event, start_time_of_event, end_time_of_event, location) VALUES (#{host.id}, #{title}, #{description}, #{date_of_event}, #{start_time_of_event}, #{end_time_of_event}, #{location})")
+    @Options(useGeneratedKeys=true, keyProperty="id", keyColumn="id")
+    void createEvent(Event event);
 }

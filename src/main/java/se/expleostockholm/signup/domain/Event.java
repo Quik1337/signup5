@@ -17,7 +17,8 @@ public class Event {
     private String title;
     private String description;
     private LocalDate date_of_event;
-    private LocalTime time_of_event;
+    private LocalTime start_time_of_event;
+    private LocalTime end_time_of_event;
     private String location;
     @Builder.Default
     private List<Invitation> invitations = new ArrayList<>();

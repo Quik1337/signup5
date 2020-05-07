@@ -17,4 +17,10 @@ public interface UserMapper {
     @Select("SELECT * FROM user_ WHERE id = #{id}")
     Optional<User> getUserById(Long id);
 
+    @Select("SELECT * FROM user_ WHERE email = #{email}")
+    Optional<User> getUserByEmail(String email);
+
+    @Insert("INSERT INTO user_ (email, first_name, last_name) VALUES (#{email}, #{first_name}, #{last_name})")
+    @Options(useGeneratedKeys=true, keyProperty="id", keyColumn="id")
+    void createUser(User guest);
 }

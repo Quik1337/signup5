@@ -3,6 +3,7 @@ package se.expleostockholm.signup.repository;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 import se.expleostockholm.signup.domain.Invitation;
+import se.expleostockholm.signup.domain.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -38,6 +39,13 @@ public interface InvitationMapper {
     })
     List<Invitation> getInvitationsByGuestId(Long guest_id);
 
+    @Insert("INSERT INTO invitation_ (event_id, guest_id) VALUES (#{event.id}, #{guest.id})")
+    @Options(useGeneratedKeys=true, keyProperty="id", keyColumn="id")
+    void createInvitation(Invitation invitation);
+
     @Update("UPDATE invitation_ SET attendance=#{attendance}::attendance_, comment=#{comment} WHERE id=#{id}")
-    void updateInvitation(Invitation invitationUpdateInput);
+    void updateInvitation(Invitation invitation);
+
+    @Delete("DELETE FROM invitation_ WHERE id=#{id}")
+    void deleteInvitation(Invitation invitation);
 }
