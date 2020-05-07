@@ -21,6 +21,7 @@ public class EventService {
     private final EventMapper eventMapper;
     private final UserMapper userMapper;
     private final InvitationMapper invitationMapper;
+    private final InvitationEmailService invitationEmailService;
 
     public List<Event> getEvents() {
         return eventMapper.getEvents();
@@ -75,6 +76,8 @@ public class EventService {
             tempInvitation.setEvent(event);
 
             invitationMapper.createInvitation(tempInvitation);
+
+            invitationEmailService.sendEmail(tempInvitation);
         }
 
     }

@@ -16,6 +16,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class InvitationService {
 
+    private final InvitationEmailService invitationEmailService;
     private final InvitationMapper invitationMapper;
     private final EventMapper eventMapper;
     private final UserMapper userMapper;
@@ -70,6 +71,8 @@ public class InvitationService {
             throw new Exception("No event with that id found.");
         
         invitationMapper.createInvitation(invitation);
+
+        invitationEmailService.sendEmail(invitation);
     }
 
     public void updateInvitation(Invitation invitation) {
