@@ -50,6 +50,7 @@ insert into invitation_ (event_id, guest_id) values (2, 1);
 insert into invitation_ (event_id, guest_id) values (2, 2);
 insert into invitation_ (event_id, guest_id) values (2, 3);
 insert into invitation_ (event_id, guest_id) values (2, 6);
+insert into invitation_ (event_id, guest_id) values (2, 7);
 
 insert into invitation_ (event_id, guest_id) values (3, 1);
 insert into invitation_ (event_id, guest_id) values (3, 2);
