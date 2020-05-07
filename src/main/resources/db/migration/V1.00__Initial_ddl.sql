@@ -28,16 +28,17 @@ CREATE TABLE invitation_
     attendance attendance_ DEFAULT 'NO_RESPONSE'
 );
 
-insert into user_ (id, first_name, last_name, email) values (1, 'Adam', 'Bäckström', 'adam.backstrom@email.com');
-insert into user_ (id, first_name, last_name, email) values (2, 'Adem', 'Üre', 'adem.üre@email.com');
-insert into user_ (id, first_name, last_name, email) values (3, 'Linus', 'Bohm', 'linus.bohm@email.com');
-insert into user_ (id, first_name, last_name, email) values (4, 'Nataliya', 'Zaluska', 'nataliya.zaluska@email.com');
-insert into user_ (id, first_name, last_name, email) values (5, 'Arzu', 'Oguz', 'arzu.oguz@email.com');
-insert into user_ (id, first_name, last_name, email) values (6, 'Jan', 'Grape', 'jan.grape@email.com');
+insert into user_ (first_name, last_name, email) values ('Adam', 'Bäckström', 'adam.backstrom@email.com');
+insert into user_ (first_name, last_name, email) values ('Adem', 'Üre', 'adem.üre@email.com');
+insert into user_ (first_name, last_name, email) values ('Linus', 'Bohm', 'linus.bohm@email.com');
+insert into user_ (first_name, last_name, email) values ('Nataliya', 'Zaluska', 'nataliya.zaluska@email.com');
+insert into user_ (first_name, last_name, email) values ('Arzu', 'Oguz', 'arzu.oguz@email.com');
+insert into user_ (first_name, last_name, email) values ('Jan', 'Grape', 'jan.grape@email.com');
+insert into user_ (first_name, last_name, email) values ('Signup', 'Lia', 'signup5lia@gmail.com');
 
-insert into event_ (id, host_id, title, description, date_of_event, time_of_event, location) values (1, 1, 'Daily Standup', 'A meeting where we discuss what we have done and what we are going to do', '2020-07-19', '09:00:00', 'Skype');
-insert into event_ (id, host_id, title, description, date_of_event, time_of_event, location) values (2, 2, 'User Story Presentation', 'We will present our User Story', '2020-04-28', '15:30:00', 'Skype');
-insert into event_ (id, host_id, title, description, date_of_event, time_of_event, location) values (3, 3, 'After Work Gaming', 'We gonna play some 7 Wonders to celebrate', '2020-07-29', '16:00:00', 'Office');
+insert into event_ (host_id, title, description, date_of_event, time_of_event, location) values (1, 'Daily Standup', 'A meeting where we discuss what we have done and what we are going to do.', '2020-07-19', '09:00:00', 'Skype');
+insert into event_ (host_id, title, description, date_of_event, time_of_event, location) values (2, 'LIA Check-in med Janne', 'Checking in with Janne to see how the LIA project is developing.', '2020-05-07', '14:00:00', 'Skype');
+insert into event_ (host_id, title, description, date_of_event, time_of_event, location) values (3, 'After Work Gaming', 'We gonna play some 7 Wonders to celebrate.', '2020-07-29', '16:00:00', 'Office');
 
 insert into invitation_ (event_id, guest_id) values (1, 1);
 insert into invitation_ (event_id, guest_id) values (1, 2);
