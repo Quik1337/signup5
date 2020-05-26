@@ -17,6 +17,12 @@ type User {
     last_name: String
 }
 
+type Account {
+    id: ID
+    user: User
+    password: String
+}
+
 type Event {
     id: ID
     host: User
@@ -44,12 +50,16 @@ input UserInput {
     last_name: String
 }
 
+input CreateAccountInput {
+    user: UserInput
+    password: String
+}
+
 input EventInput {
     id: Int
 }
 
 input CreateInvitationInput {
-    event: EventInput
     guest: UserInput
 }
 
@@ -78,6 +88,10 @@ type Query {
     getUsers: [User]
     getUserById(id: Int): User
 
+    getAccounts: [Account]
+    getAccountById(id: Int): Account
+    getAccountByUserId(user_id: Int): Account
+
     getEvents: [Event]
     getEventById(id: Int): Event
     getEventsByHostId(host_id: Int): [Event]
@@ -88,9 +102,12 @@ type Query {
 }
 
 type Mutation {
+    createAccount(account: CreateAccountInput): Response
+
     createInvitation(invitation: CreateInvitationInput): Response
     updateInvitation(invitation: UpdateInvitationInput): Response
     deleteInvitation(invitation: DeleteInvitationInput): Response
+
     createEvent(event: CreateEventInput): Response
 }
 
