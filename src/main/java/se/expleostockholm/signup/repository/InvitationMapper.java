@@ -43,9 +43,9 @@ public interface InvitationMapper {
     @Options(useGeneratedKeys=true, keyProperty="id", keyColumn="id")
     void createInvitation(Invitation invitation);
 
-    @Update("UPDATE invitation_ SET attendance=#{attendance}::attendance_, comment=#{comment} WHERE id=#{id}")
+    @Update("UPDATE invitation_ SET attendance = #{attendance}::attendance_, comment = #{comment} WHERE id = #{id}")
     void updateInvitation(Invitation invitation);
 
-    @Delete("DELETE FROM invitation_ WHERE id=#{id}")
+    @Delete("DELETE FROM invitation_ WHERE id = #{id}")
     void deleteInvitation(Invitation invitation);
 }

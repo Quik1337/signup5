@@ -10,18 +10,18 @@ import se.expleostockholm.signup.service.*;
 @AllArgsConstructor
 public class Mutation implements GraphQLMutationResolver {
 
-    private final AccountService accountService;
+    private final UserService userService;
     private final EventService eventService;
     private final InvitationService invitationService;
 
-    // Account  --------------------------------------------------------------------------------------------------------
+    // User  -----------------------------------------------------------------------------------------------------------
 
-    public Response createAccount(Account account) throws Exception {
-        accountService.createAccount(account);
+    public Response registerUser(User user) throws Exception {
+        userService.registerUser(user);
 
         return Response.builder()
-                .message("The account was successfully created.")
-                .id(account.getId())
+                .message("The user was successfully been registered.")
+                .id(user.getId())
                 .build();
     }
 

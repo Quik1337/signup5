@@ -23,4 +23,7 @@ public interface UserMapper {
     @Insert("INSERT INTO user_ (email, first_name, last_name) VALUES (#{email}, #{first_name}, #{last_name})")
     @Options(useGeneratedKeys=true, keyProperty="id", keyColumn="id")
     void createUser(User guest);
+
+    @Update("UPDATE user_ SET role = 'REGISTERED'::role_, password = #{password}, first_name = #{first_name}, last_name = #{last_name} WHERE email = #{email}")
+    void registerUser(User user);
 }

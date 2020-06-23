@@ -3,11 +3,9 @@ package se.expleostockholm.signup.resolver;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-import se.expleostockholm.signup.domain.Account;
 import se.expleostockholm.signup.domain.Event;
 import se.expleostockholm.signup.domain.Invitation;
 import se.expleostockholm.signup.domain.User;
-import se.expleostockholm.signup.service.AccountService;
 import se.expleostockholm.signup.service.EventService;
 import se.expleostockholm.signup.service.InvitationService;
 import se.expleostockholm.signup.service.UserService;
@@ -19,7 +17,6 @@ import java.util.List;
 public class Query implements GraphQLQueryResolver {
 
     private final UserService userService;
-    private final AccountService accountService;
     private final EventService eventService;
     private final InvitationService invitationService;
 
@@ -31,20 +28,6 @@ public class Query implements GraphQLQueryResolver {
 
     public User getUserById(Long id) throws Exception {
         return userService.getUserById(id);
-    }
-
-    // Account  --------------------------------------------------------------------------------------------------------
-
-    public List<Account> getAccounts() {
-        return accountService.getAccounts();
-    }
-
-    public Account getAccountById(Long id) throws Exception {
-        return accountService.getAccountById(id);
-    }
-
-    public Account getAccountByUserId(Long user_id) throws Exception {
-        return accountService.getAccountByUserId(user_id);
     }
 
     // Event  ----------------------------------------------------------------------------------------------------------

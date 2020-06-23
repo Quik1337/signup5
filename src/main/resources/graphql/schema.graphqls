@@ -5,6 +5,11 @@ enum Attendance {
     NO_RESPONSE
 }
 
+enum Role {
+    UNREGISTERED
+    REGISTERED
+}
+
 type Response {
     id: ID
     message: String
@@ -15,12 +20,8 @@ type User {
     email: String
     first_name: String
     last_name: String
-}
-
-type Account {
-    id: ID
-    user: User
     password: String
+    role: Role
 }
 
 type Event {
@@ -50,8 +51,10 @@ input UserInput {
     last_name: String
 }
 
-input CreateAccountInput {
-    user: UserInput
+input RegisterUserInput {
+    email: String
+    first_name: String
+    last_name: String
     password: String
 }
 
@@ -60,6 +63,7 @@ input EventInput {
 }
 
 input CreateInvitationInput {
+    event: EventInput
     guest: UserInput
 }
 
@@ -88,10 +92,6 @@ type Query {
     getUsers: [User]
     getUserById(id: Int): User
 
-    getAccounts: [Account]
-    getAccountById(id: Int): Account
-    getAccountByUserId(user_id: Int): Account
-
     getEvents: [Event]
     getEventById(id: Int): Event
     getEventsByHostId(host_id: Int): [Event]
@@ -102,7 +102,7 @@ type Query {
 }
 
 type Mutation {
-    createAccount(account: CreateAccountInput): Response
+    registerUser(user: RegisterUserInput): Response
 
     createInvitation(invitation: CreateInvitationInput): Response
     updateInvitation(invitation: UpdateInvitationInput): Response
