@@ -10,6 +10,10 @@ enum Role {
     REGISTERED
 }
 
+type AuthenticationResponse {
+    jwt: String
+}
+
 type Response {
     id: ID
     message: String
@@ -42,6 +46,11 @@ type Invitation {
     guest: User
     comment: String
     attendance: Attendance
+}
+
+input AuthenticationRequest {
+    username: String
+    password: String
 }
 
 input UserInput {
@@ -91,6 +100,7 @@ input CreateEventInput {
 type Query {
     getUsers: [User]
     getUserById(id: Int): User
+    getUserByEmail(email: String): User
 
     getEvents: [Event]
     getEventById(id: Int): Event
@@ -102,6 +112,8 @@ type Query {
 }
 
 type Mutation {
+    authenticate(authenticationRequest: AuthenticationRequest): AuthenticationResponse
+
     registerUser(user: RegisterUserInput): Response
 
     createInvitation(invitation: CreateInvitationInput): Response

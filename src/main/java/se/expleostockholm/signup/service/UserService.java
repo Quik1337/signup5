@@ -1,7 +1,6 @@
 package se.expleostockholm.signup.service;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import se.expleostockholm.signup.domain.Role;
@@ -13,7 +12,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class UserService {
+public class UserService{
 
     private PasswordEncoder passwordEncoder;
 
@@ -25,6 +24,10 @@ public class UserService {
 
     public User getUserById(Long id) throws Exception {
         return userMapper.getUserById(id).orElseThrow(() -> new Exception("No user found!"));
+    }
+
+    public User getUserByEmail(String email) throws Exception {
+        return userMapper.getUserByEmail(email).orElseThrow(() -> new Exception("No user found!"));
     }
 
     public void registerUser(User user) throws Exception {
@@ -48,5 +51,4 @@ public class UserService {
         } else
             throw new Exception("Unable to create User.");
     }
-
 }

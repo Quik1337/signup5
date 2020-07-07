@@ -33,7 +33,7 @@ CREATE TABLE invitation_
     attendance attendance_ DEFAULT 'NO_RESPONSE'
 );
 
-insert into user_ (first_name, last_name, email) values ('Adam', 'Bäckström', 'adam.backstrom@email.com');
+insert into user_ (first_name, last_name, email, password, role) values ('Adam', 'Bäckström', 'adam.backstrom@email.com', '{bcrypt}$2a$10$ngewvqXytQNrMXUzrHCDTOudE691QGRxDwAOqzsvM9Zlh1vUgiuAy', 'REGISTERED');
 insert into user_ (first_name, last_name, email) values ('Adem', 'Üre', 'adem.üre@email.com');
 insert into user_ (first_name, last_name, email) values ('Linus', 'Bohm', 'linus.bohm@email.com');
 insert into user_ (first_name, last_name, email) values ('Nataliya', 'Zaluska', 'nataliya.zaluska@email.com');

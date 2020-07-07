@@ -30,6 +30,10 @@ public class Query implements GraphQLQueryResolver {
         return userService.getUserById(id);
     }
 
+    public User getUserByEmail(String email) throws Exception {
+        return userService.getUserByEmail(email);
+    }
+
     // Event  ----------------------------------------------------------------------------------------------------------
 
     public List<Event> getEvents(){

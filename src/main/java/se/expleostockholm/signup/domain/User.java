@@ -1,6 +1,7 @@
 package se.expleostockholm.signup.domain;
 
 import lombok.*;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Data
 @Builder
