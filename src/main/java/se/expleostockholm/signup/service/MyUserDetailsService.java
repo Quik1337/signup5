@@ -29,29 +29,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
         Optional<User> optionalUser = userMapper.getUserByEmail(email);
 
-        return new CustomUserDetails(optionalUser.get()); //ustomUserDetails().springframework.security.core.userdetails.User(email, (optionalUser.get().getPassword()), new ArrayList<>());
+        return new CustomUserDetails(optionalUser.get());
 
-        //passwordEncoder.encode(user.getPassword())
-
-        /*
-        Role role = optionalUser.get().getRole();
-
-        Set<GrantedAuthority> authorities = new HashSet<>();
-
-        authorities.add(new SimpleGrantedAuthority(role.toString()));
-
-        CustomUserDetails customUserDetail = new CustomUserDetails();
-
-        customUserDetail.setUser(optionalUser.get());
-        customUserDetail.setAuthorities(authorities);
-
-        return customUserDetail;
-        */
-
-        /*
-        if (optionalUser.isPresent())
-            return (UserDetails) optionalUser.get();
-        else
-            throw new UsernameNotFoundException("No user found");*/
     }
 }
